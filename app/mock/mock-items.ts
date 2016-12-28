@@ -10,5 +10,14 @@ export const ITEMS: Item[] = [
 	{ _id: 17, name: 'Dynama' },
 	{ _id: 18, name: 'Dr IQ' },
 	{ _id: 19, name: 'Magma', imgUri: '/assert/item/1.jpg' },
-	{ _id: 20, name: 'Tornado', imgUri: '/assert/item/2.jpg' }
+	{ _id: 20, name: 'Tornado', imgUri: '/assert/item/2.jpg' },
+
+	{
+		_id: 20,
+		name: 'temp_name',
+		imgUri: '/assert/item/temp_name',
+		description: 'whatever',
+		tags: [],
+		parent: 999999
+	}
 ];
