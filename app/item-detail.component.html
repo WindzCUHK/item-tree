@@ -1,0 +1,15 @@
+
+<div *ngIf="item">
+	<h2>{{item.name | uppercase}} details!</h2>
+	<div *ngIf="item.imgUri">
+		<img src={{item.imgUri}}>
+	</div>
+	<div>
+		<label>id: </label>{{item._id}}
+	</div>
+	<div>
+		<label>name: </label>
+		<input [(ngModel)]="item.name" placeholder="name"/>
+	</div>
+	<button (click)="goBack()">Back</button>
+</div>

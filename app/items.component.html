@@ -1,0 +1,14 @@
+<h2>My Heroes</h2>
+<ul class="heroes">
+  <li *ngFor="let item of items | search: itemFilterService.name:null"
+    [class.selected]="item === selectedItem"
+    (click)="onSelect(item)">
+    <span class="badge">{{item._id}}</span> {{item.name}}
+  </li>
+</ul>
+<div *ngIf="selectedItem">
+  <h2>
+    {{selectedItem.name | uppercase}} is my hero
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>
