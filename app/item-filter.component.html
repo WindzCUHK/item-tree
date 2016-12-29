@@ -7,4 +7,7 @@
 		<label>tag: </label>
 		<input [(ngModel)]="itemFilterService.tag" placeholder="tag"/>
 	</div>
+	<div>
+		<span class="tag" *ngFor="let tag of tags">{{tag}}</span>
+	</div>
 </div>

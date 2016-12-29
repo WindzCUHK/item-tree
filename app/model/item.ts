@@ -6,6 +6,7 @@ export class Item {
 	description?: string;
 	tags?: string[];
 	
-	parent: number;
-	child?: number[];
+	level?: number;
+	parent?: number;
+	children?: number[];
 }

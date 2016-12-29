@@ -13,8 +13,10 @@ import { ItemFilterService } from './service/item-filter.service';
 })
 export class ItemsComponent implements OnInit {
 
-	items: Item[];
+	leveledItems: Item[][];
+
 	selectedItem: Item;
+	navigatingItems: Item[] = [];
 
 	constructor(
 		private router: Router,
@@ -24,16 +26,22 @@ export class ItemsComponent implements OnInit {
 
 	}
 
-	getItems(): void {
-		this.itemService.getItems().then(items => this.items = items);
+	loadRootItems(): void {
+		this.itemService.getRootItems().then(items => this.leveledItems = [items]);
 	}
 
 	ngOnInit(): void {
-		this.getItems();
+		this.loadRootItems();
 	}
 
 	onSelect(item: Item): void {
 		this.selectedItem = item;
+
+		const level = item.level;
+		this.navigatingItems.length = level + 1;
+		this.navigatingItems[level] = item;
+		this.leveledItems.length = level + 1;
+		this.itemService.getChildren(item).then(items => this.leveledItems[level + 1] = items);
 	}
 
 	gotoDetail(): void {

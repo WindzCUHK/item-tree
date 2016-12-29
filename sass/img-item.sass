@@ -1,0 +1,102 @@
+
+$common_transition: all 222ms ease
+
+.img-item
+	position: relative
+	width: 300px
+	height: 100px
+	overflow: visible
+	margin: 3px
+
+	&__expander
+		position: absolute
+		width: 100%
+		height: 100%
+		top: 0
+
+		box-sizing: border-box
+		border: 2px solid #DDD
+		border-radius: 1em
+		overflow: hidden
+
+		transition: $common_transition
+
+	&__expander:hover
+		$expand_ratio: 2
+
+		z-index: 1
+		height: 100% * $expand_ratio
+		top: -50% * $expand_ratio
+		transform: translateY(50% / $expand_ratio)
+		box-shadow: 1px 1px 7px 0px rgba(0,0,0,0.5);
+
+	&__selected
+		box-shadow: 1px 1px 7px 0px rgba(255,255,0,0.5);
+
+	&__thumbnail
+		width: 100%
+		height: 100%
+		object-fit: cover
+		object-position: 50% 50%
+		vertical-align: middle
+
+	&__overlay
+		position: absolute
+		width: 100%
+		height: 100%
+		top: 0
+		left: 0
+		background: white
+
+		opacity: 0
+		transition: $common_transition
+
+	&__expander:hover &__overlay
+		opacity: 0.5
+
+	&__text
+		$translate_offset: 100%
+
+		position: absolute
+		top: 50%
+		left: 50%
+		transform: translate(-50%, -50% + $translate_offset)
+		color: black
+		text-align: center;
+
+		opacity: 0
+		transition: $common_transition
+
+	&__expander:hover &__text
+		opacity: 1
+		transform: translate(-50%, -50%)
+
+	&__header
+		display: inline-block
+		font-weight: bold
+		font-size: 150%
+		padding: 0 1ch
+		border-bottom: 3px solid black
+		margin-bottom: 1ex
+		padding-bottom: 1ex
+
+	&__details
+		opacity: 0.8
+		font-style: italic
+
+
+	&__child-indicator
+		position: absolute
+		right: 0.5em
+		top: 50%
+		transform: translateY(-50%)
+		background: #888
+		color: white
+
+		width: 1em
+		height: 1em
+		text-align: center
+		border-radius: 50%
+		padding: 0.2em
+		font-weight: bold
+

@@ -1,14 +1,22 @@
 <h2>My Heroes</h2>
-<ul class="heroes">
-  <li *ngFor="let item of items | search: itemFilterService.name:null"
-    [class.selected]="item === selectedItem"
-    (click)="onSelect(item)">
-    <span class="badge">{{item._id}}</span> {{item.name}}
-  </li>
-</ul>
+<div class="grid grid--single-row">
+	<ul *ngFor="let items of leveledItems" class="grid grid--column grid--list">
+		<li class="img-item" *ngFor="let item of items | search: itemFilterService.name:null" (click)="onSelect(item)">
+			<div class="img-item__expander" [class.img-item__selected]="item === selectedItem">
+				<img class="img-item__thumbnail" [src]="item.imgUri" />
+				<div class="img-item__overlay"></div>
+				<div class="img-item__text">
+					<div class="img-item__header">{{item.name}}</div>
+					<div class="img-item__details">{{item.description}}</div>
+				</div>
+				<div class="img-item__child-indicator" *ngIf="item.children && item.children?.length !== 0">&gt;</div>
+			</div>
+		</li>
+	</ul>
+</div>
 <div *ngIf="selectedItem">
-  <h2>
-    {{selectedItem.name | uppercase}} is my hero
-  </h2>
-  <button (click)="gotoDetail()">View Details</button>
+	<h2>
+		{{selectedItem.name | uppercase}} is my hero
+	</h2>
+	<button (click)="gotoDetail()">View Details</button>
 </div>
